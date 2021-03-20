@@ -20,6 +20,8 @@ import android.view.View
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -53,6 +55,7 @@ import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.ui.theme.MyTheme
 import android.graphics.Color as gColor
 
+@ExperimentalAnimationApi
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +71,7 @@ class MainActivity : AppCompatActivity() {
 }
 
 // Start building your app here!
+@ExperimentalAnimationApi
 @Composable
 fun MyApp() {
     val colors = mutableStateListOf(
@@ -90,7 +94,7 @@ fun MyApp() {
             )
         )
     )
-    val index = mutableStateOf(1)
+    val index = mutableStateOf(0)
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -113,6 +117,7 @@ fun MyApp() {
     )
 }
 
+@ExperimentalAnimationApi
 @Composable
 fun Info1() {
     Column(
@@ -129,9 +134,9 @@ fun Info1() {
             R.drawable.ic_weather_thunderstorm,
         )
         Text(text = "北京市", style = MaterialTheme.typography.h4)
-        Text(text = "晴朗/有风")
-        Text(text = "13°", style = MaterialTheme.typography.h2)
-        Text(text = "最高 13° / 最低3°")
+        Text(text = "晴朗/有风", style = MaterialTheme.typography.body2)
+        Text(text = "13", style = MaterialTheme.typography.h2)
+        Text(text = "最高 13 / 最低3", style = MaterialTheme.typography.body2)
         Divider(modifier = Modifier.padding(top = 30.dp, bottom = 16.dp))
         LazyRow {
             items(24) {
@@ -139,9 +144,9 @@ fun Info1() {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.width(50.dp)
                 ) {
-                    Text(text = "${it}时")
+                    Text(text = "${it}时", style = MaterialTheme.typography.body2)
                     WeatherIcon(images[it % 5])
-                    Text(text = "${(1..5).random() + 10}°")
+                    Text(text = "${(1..5).random() + 10}")
                 }
             }
         }
@@ -154,9 +159,19 @@ fun Info1() {
             ) {
                 Text(text = it, modifier = Modifier.padding(start = 16.dp))
                 WeatherIcon(images[(0..images.size).random() % 5])
-                Text(text = "${(1..5).random() + 10}°", modifier = Modifier.padding(end = 16.dp))
+                Text(text = "${(1..5).random() + 10}", modifier = Modifier.padding(end = 16.dp))
             }
         }
+        Divider()
+        Text(
+            text = "今天大部分晴朗。气温6；预计最高气温12。",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        )
+        Divider()
+        OtherInfo()
+        Divider(modifier = Modifier.padding(bottom = 30.dp))
     }
 }
 
@@ -168,11 +183,84 @@ fun WeatherIcon(@DrawableRes resId: Int) {
         Modifier
             .size(30.dp)
             .padding(vertical = 4.dp),
-        colorFilter = ColorFilter.tint(Color.White)
+        colorFilter = ColorFilter.tint(MaterialTheme.colors.onBackground)
     )
 }
 
-@Preview("Dark Theme", widthDp = 360, heightDp = 640)
+@ExperimentalAnimationApi
+@Composable
+fun OtherInfo() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.padding(top = 4.dp)
+        ) {
+            Text(text = "空气质量", style = MaterialTheme.typography.caption)
+            Text(text = "AQI(CN)", style = MaterialTheme.typography.caption)
+        }
+        Text(text = "280 - 重度污染", style = MaterialTheme.typography.h5)
+        Text(text = "北京市的监测站读数。上次更新时间：1小时内。", modifier = Modifier.padding(bottom = 4.dp))
+        Divider()
+        ItemInfo("日出", "06:46", "日落", "18:56")
+        ItemInfo("降雨概率", "10%", "湿度", "56%")
+        ItemInfo("风", "西3米/秒", "体感温度", "4")
+        ItemInfo("降水量", "0毫米", "气压", "1029百帕")
+        ItemInfo("能见度", "8.1公里", "紫外线指数", "0", showDivider = false)
+    }
+}
+
+@ExperimentalAnimationApi
+@Composable
+fun ItemInfo(
+    key1: String,
+    value1: String,
+    key2: String,
+    value2: String,
+    showDivider: Boolean = true
+) {
+    Column {
+        Row {
+            Column(Modifier.weight(1f)) {
+                Text(
+                    text = key1,
+                    style = MaterialTheme.typography.caption,
+                    modifier = Modifier
+                        .padding(top = 4.dp)
+                )
+                Text(
+                    text = value1,
+                    style = MaterialTheme.typography.h5,
+                    modifier = Modifier
+                        .padding(bottom = 4.dp)
+                )
+            }
+            Column(Modifier.weight(1f)) {
+                Text(
+                    text = key2,
+                    style = MaterialTheme.typography.caption,
+                    modifier = Modifier
+                        .padding(top = 4.dp)
+                )
+                Text(
+                    text = value2,
+                    style = MaterialTheme.typography.h5,
+                    modifier = Modifier
+                        .padding(bottom = 4.dp)
+                )
+            }
+        }
+        AnimatedVisibility(visible = showDivider) {
+            Divider()
+        }
+    }
+}
+
+@ExperimentalAnimationApi
+@Preview("Dark Theme", widthDp = 360, heightDp = 1100)
 @Composable
 fun DarkPreview() {
     MyTheme(darkTheme = true) {
@@ -180,7 +268,8 @@ fun DarkPreview() {
     }
 }
 
-@Preview("Light Theme", widthDp = 360, heightDp = 640)
+@ExperimentalAnimationApi
+@Preview("Light Theme", widthDp = 360, heightDp = 1100)
 @Composable
 fun LightPreview() {
     MyTheme {
