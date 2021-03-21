@@ -75,7 +75,6 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-@ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @Composable
 fun MyApp() {
@@ -130,7 +129,6 @@ val images = listOf(
     R.drawable.ic_weather_thunderstorm,
 )
 
-@ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @Composable
 fun Info1() {
@@ -343,7 +341,6 @@ fun ItemInfo(
     }
 }
 
-@ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @Preview("Dark Theme", widthDp = 360, heightDp = 1100)
 @Composable
@@ -353,7 +350,6 @@ fun DarkPreview() {
     }
 }
 
-@ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @Preview("Light Theme", widthDp = 360, heightDp = 1100)
 @Composable
