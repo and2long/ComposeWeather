@@ -9,5 +9,34 @@
       or implied. See the License for the specific language governing permissions and limitations under
       the License.
       -->
-    <string name="app_name">AndroidDevChallenge</string>
+    <string name="app_name" translatable="false">AndroidDevChallenge</string>
+    <string name="city">北京市</string>
+    <string name="status">大部晴朗</string>
+    <string name="temp" translatable="false">6°</string>
+    <string name="temp_range">最高 12° / 最低 3°</string>
+    <string name="status_detail">今天大部分晴朗。气温6°；预计最高气温12°。</string>
+    <string name="air_quality">空气质量</string>
+    <string name="quality_status">38 - 优</string>
+    <string name="quality_desc">北京市的监测站读数。上次更新时间：1小时内。</string>
+    <string name="sunrise">日出</string>
+    <string name="sunset">日落</string>
+    <string name="change_of_snow">降雨概率</string>
+    <string name="humidity">湿度</string>
+    <string name="wind">风</string>
+    <string name="wind_detail">西3米/秒</string>
+    <string name="feels_like">体感温度</string>
+    <string name="precipitation">降水量</string>
+    <string name="pressure">气压</string>
+    <string name="visibility">能见度</string>
+    <string name="uv_index">紫外线指数</string>
+
+    <string-array name="weeks">
+        <item>星期一</item>
+        <item>星期二</item>
+        <item>星期三</item>
+        <item>星期四</item>
+        <item>星期五</item>
+        <item>星期六</item>
+        <item>星期日</item>
+    </string-array>
 </resources>

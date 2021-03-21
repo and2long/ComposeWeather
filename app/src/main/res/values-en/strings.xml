@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="city">Beijing</string>
+    <string name="status">Mostly Clear</string>
+    <string name="temp_range">H:12° L:3°</string>
+    <string name="status_detail">Today: Mostly clear currently. It\'s 6°; the high today was forecast as 12°.</string>
+    <string name="air_quality">AIR QUALITY</string>
+    <string name="quality_status">38 - Excellent</string>
+    <string name="sunrise">SUNRISE</string>
+    <string name="sunset">SUNSET</string>
+    <string name="change_of_snow">CHANGE OF RAIN</string>
+    <string name="humidity">HUMIDITY</string>
+    <string name="wind">WIND</string>
+    <string name="wind_detail">s 3 m/s</string>
+    <string name="feels_like">FEELS LIKE</string>
+    <string name="precipitation">PRECIPITATION</string>
+    <string name="pressure">PRESSURE</string>
+    <string name="visibility">VISIBILITY</string>
+    <string name="uv_index">UV INDEX</string>
+    <string name="quality_desc">Station reading from Beijing. Updated less than an hour ago.</string>
+
+    <string-array name="weeks">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+</resources>
