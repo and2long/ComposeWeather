@@ -21,7 +21,6 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,15 +32,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.Divider
-import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.NavigateNext
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -103,21 +98,11 @@ class MainActivity : AppCompatActivity() {
 @ExperimentalAnimationApi
 @Composable
 fun MyApp() {
-    val index = mutableStateOf(0)
     Scaffold(
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    index.value = if (index.value == colors.size - 1) 0 else index.value + 1
-                }
-            ) {
-                Image(imageVector = Icons.Default.NavigateNext, contentDescription = null)
-            }
-        },
         content = {
             LazyColumn(
                 Modifier
-                    .background(colors[index.value])
+                    .background(colors[0])
                     .fillMaxSize()
             ) {
                 item {
